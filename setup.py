@@ -62,8 +62,8 @@ if platform.system() == "Darwin":
     extra_compile_args = ["-Wno-strict-aliasing", "-O2"]
 elif platform.system() == "Linux":
     try:
-        glew_header = os.path.join(os.environ["GL_INCLUDE_PATH"], "GL/glew.h")
-        includes += [os.environ["GL_INCLUDE_PATH"]]
+        glew_header = os.path.join(os.environ["GL_INCLUDE_PATH"], "GL", "glew.h")
+        includes += [os.environ["GL_INCLUDE_PATH"], os.path.join(os.environ["GL_INCLUDE_PATH"], "GL")]
     except KeyError:
         glew_header = "/usr/include/GL/glew.h"
         includes += ["/usr/include/GL"]
