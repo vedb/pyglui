@@ -62,20 +62,24 @@ if platform.system() == "Darwin":
     extra_compile_args = ["-Wno-strict-aliasing", "-O2"]
 elif platform.system() == "Linux":
     try:
-        glew_header = os.path.join(os.environ["GL_INCLUDE_DIR"], "GL", "glew.h")
-        includes += [os.environ["GL_INCLUDE_DIR"], os.path.join(os.environ["GL_INCLUDE_DIR"], "GL")]
+        glew_header = os.path.join(os.environ["GLEW_INCLUDE_DIR"], "GL", "glew.h")
+        includes += [os.environ["GLEW_INCLUDE_DIR"], os.path.join(os.environ["GLEW_INCLUDE_DIR"], "GL")]
     except KeyError:
         glew_header = "/usr/include/GL/glew.h"
         includes += ["/usr/include/GL"]
-    libs = ["GLEW", "GL"]  # GL needed for fonstash
     try:
-        lib_dir += [os.environ["GL_LIBRARY_DIR"]]
+        includes += [os.environ["GL_INCLUDE_DIR"]]
     except KeyError:
         pass
     try:
         lib_dir += [os.environ["GLEW_LIBRARY_DIR"]]
     except KeyError:
         pass
+    try:
+        lib_dir += [os.environ["GL_LIBRARY_DIR"]]
+    except KeyError:
+        pass
+    libs = ["GLEW", "GL"]  # GL needed for fonstash
     link_args = []
     extra_compile_args = ["-Wno-strict-aliasing", "-O2"]
 elif platform.system() == "Windows":
