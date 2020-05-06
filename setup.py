@@ -69,11 +69,11 @@ elif platform.system() == "Linux":
         includes += ["/usr/include/GL"]
     libs = ["GLEW", "GL"]  # GL needed for fonstash
     try:
-        lib_dir += [os.environ["GL_LIBRARY_DIR]]
+        lib_dir += [os.environ["GL_LIBRARY_DIR"]]
     except KeyError:
         pass
     try:
-        lib_dir += [os.environ["GLEW_LIBRARY_DIR]]
+        lib_dir += [os.environ["GLEW_LIBRARY_DIR"]]
     except KeyError:
         pass
     link_args = []
