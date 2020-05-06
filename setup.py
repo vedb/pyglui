@@ -68,6 +68,10 @@ elif platform.system() == "Linux":
         glew_header = "/usr/include/GL/glew.h"
         includes += ["/usr/include/GL"]
     libs = ["GLEW", "GL"]  # GL needed for fonstash
+    try:
+        lib_dir += [os.environ["GL_LIB_PATH"]]
+    except KeyError:
+        pass
     link_args = []
     extra_compile_args = ["-Wno-strict-aliasing", "-O2"]
 elif platform.system() == "Windows":
